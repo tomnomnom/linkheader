@@ -1,6 +1,6 @@
 # Golang Link Header Parser
 
-Library for parsing HTTP Link headers.
+Library for parsing HTTP Link headers. Requires Go 1.2 or higher.
 
 Docs can be found on [the GoDoc page](https://godoc.org/github.com/TomNomNom/linkheader).
 
@@ -9,6 +9,8 @@ Docs can be found on [the GoDoc page](https://godoc.org/github.com/TomNomNom/lin
 ## Basic Example
 
 ```go
+import "github.com/tomnomnom/linkheader"
+
 header := "<https://api.github.com/user/58276/repos?page=2>; rel=\"next\"," +
     "<https://api.github.com/user/58276/repos?page=2>; rel=\"last\""
 links := linkheader.Parse(header)
