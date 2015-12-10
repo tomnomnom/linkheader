@@ -9,14 +9,22 @@ Docs can be found on [the GoDoc page](https://godoc.org/github.com/TomNomNom/lin
 ## Basic Example
 
 ```go
-import "github.com/tomnomnom/linkheader"
+package main
 
-header := "<https://api.github.com/user/58276/repos?page=2>; rel=\"next\"," +
-    "<https://api.github.com/user/58276/repos?page=2>; rel=\"last\""
-links := linkheader.Parse(header)
+import (
+	"fmt"
 
-for _, link := range links {
-	fmt.Printf("URL: %s; Rel: %s\n", link.URL, link.Rel)
+	"github.com/tomnomnom/linkheader"
+)
+
+func main() {
+	header := "<https://api.github.com/user/58276/repos?page=2>; rel=\"next\"," +
+		"<https://api.github.com/user/58276/repos?page=2>; rel=\"last\""
+	links := linkheader.Parse(header)
+
+	for _, link := range links {
+		fmt.Printf("URL: %s; Rel: %s\n", link.URL, link.Rel)
+	}
 }
 
 // Output:
