@@ -1,0 +1,16 @@
+# Golang Link Header Parser
+
+Library for parsing HTTP Link headers.
+
+## Example
+
+```go
+header := "<https://api.github.com/user/58276/repos?page=2>; rel=\"next\", <https://api.github.com/user/58276/repos?page=2>; rel=\"last\""
+links := linkheader.Parse(header)
+
+for _, link := range links {
+	fmt.Printf("URL: %s; Rel: %s\n", link.URL, link.Rel)
+}
+```
+
+
