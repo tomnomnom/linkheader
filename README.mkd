@@ -4,6 +4,8 @@ Library for parsing HTTP Link headers.
 
 Docs can be found on [the GoDoc page](https://godoc.org/github.com/TomNomNom/linkheader).
 
+[![Build Status](https://travis-ci.org/TomNomNom/linkheader.svg)](https://travis-ci.org/TomNomNom/linkheader)
+
 ## Basic Example
 
 ```go
