@@ -14,7 +14,7 @@ type Link struct {
 
 // HasParam returns if a Link has a particular parameter or not
 func (l Link) HasParam(key string) bool {
-	for p, _ := range l.Params {
+	for p := range l.Params {
 		if p == key {
 			return true
 		}
@@ -32,7 +32,7 @@ func (l Link) Param(key string) (string, error) {
 	return "", fmt.Errorf("Could not find param '%s'", key)
 }
 
-// Type Links is a slice of Link structs
+// Links is a slice of Link structs
 type Links []Link
 
 // FilterByRel filters a group of Links by the provided Rel attribute
