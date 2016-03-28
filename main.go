@@ -1,3 +1,4 @@
+// Package linkheader provides functions for parsing HTTP Link headers
 package linkheader
 
 import (
