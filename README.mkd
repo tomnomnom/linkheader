@@ -14,7 +14,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/tomnomnom/linkheader"
+	"github.com/TomNomNom/linkheader"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package linkheader_test
 import (
 	"fmt"
 
-	"github.com/tomnomnom/linkheader"
+	"github.com/TomNomNom/linkheader"
 )
 
 func ExampleParse() {
