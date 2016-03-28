@@ -8,9 +8,3 @@ go:
   - 1.6
   - tip
 
-install:
-  - ./script/bootstrap
-
-script:
-  - ./script/test
-  - ./script/lint
