@@ -2,9 +2,9 @@
 
 Library for parsing HTTP Link headers. Requires Go 1.2 or higher.
 
-Docs can be found on [the GoDoc page](https://godoc.org/github.com/TomNomNom/linkheader).
+Docs can be found on [the GoDoc page](https://godoc.org/github.com/tomnomnom/linkheader).
 
-[![Build Status](https://travis-ci.org/TomNomNom/linkheader.svg)](https://travis-ci.org/TomNomNom/linkheader)
+[![Build Status](https://travis-ci.org/tomnomnom/linkheader.svg)](https://travis-ci.org/TomNomNom/linkheader)
 
 ## Basic Example
 
