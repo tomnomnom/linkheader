@@ -59,7 +59,7 @@ func TestLinkMethods(t *testing.T) {
 		t.Errorf("Link should have param pet=\"cat\"")
 	}
 
-	val, err = link.Param("foo")
+	_, err = link.Param("foo")
 	if err == nil {
 		t.Errorf("Error value should not be nil")
 	}
