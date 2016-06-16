@@ -49,3 +49,15 @@ func ExampleLinks_FilterByRel() {
 	// URL: https://api.github.com/user/58276/repos?page=2; Rel: last
 
 }
+
+func ExampleLink_String() {
+	link := linkheader.Link{
+		URL: "http://example.com/page/2",
+		Rel: "next",
+	}
+
+	fmt.Printf("Link: %s\n", link.String())
+
+	// Output:
+	// Link: <http://example.com/page/2>; rel="next"
+}
