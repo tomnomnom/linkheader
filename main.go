@@ -33,6 +33,20 @@ func (l Link) Param(key string) (string, error) {
 	return "", fmt.Errorf("Could not find param '%s'", key)
 }
 
+// String returns the string representation of a Link header
+// for use in HTTP responses
+func (l Link) String() string {
+
+	p := make([]string, len(l.Params))
+	for k, v := range l.Params {
+		p = append(p, fmt.Sprintf("%s=\"%s\"", k, v))
+	}
+	if l.Rel != "" {
+		p = append(p, fmt.Sprintf("%s=\"%s\"", "rel", l.Rel))
+	}
+	return fmt.Sprintf("<%s>; %s", l.URL, strings.Join(p, "; "))
+}
+
 // Links is a slice of Link structs
 type Links []Link
 

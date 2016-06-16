@@ -66,7 +66,7 @@ func TestLinkMethods(t *testing.T) {
 
 }
 
-func testLinksMethods(t *testing.T) {
+func TestLinksMethods(t *testing.T) {
 	header := "<https://api.github.com/user/9287/repos?page=3&per_page=100>; rel=\"next\", " +
 		"<https://api.github.com/user/9287/repos?page=1&per_page=100>; rel=\"stylesheet\"; pet=\"cat\", " +
 		"<https://api.github.com/user/9287/repos?page=5&per_page=100>; rel=\"stylesheet\""
@@ -91,7 +91,7 @@ func testLinksMethods(t *testing.T) {
 
 }
 
-func testParseMultiple(t *testing.T) {
+func TestParseMultiple(t *testing.T) {
 	headers := []string{
 		"<https://api.github.com/user/58276/repos?page=2>; rel=\"next\"",
 		"<https://api.github.com/user/58276/repos?page=2>; rel=\"last\"",
@@ -101,5 +101,33 @@ func testParseMultiple(t *testing.T) {
 
 	if len(links) != 2 {
 		t.Errorf("Should have returned 2 links")
+	}
+}
+
+func TestLinkToString(t *testing.T) {
+	l := Link{
+		URL: "http://example.com/page/2",
+		Rel: "next",
+	}
+
+	have := l.String()
+
+	want := "<http://example.com/page/2>; rel=\"next\""
+	if have != want {
+		t.Errorf("Want `%s`; have `%s`", want, have)
+	}
+
+	parsed := Parse(have)
+
+	if len(parsed) != 1 {
+		t.Errorf("Expected only 1 link")
+	}
+
+	if parsed[0].URL != l.URL {
+		t.Errorf("Re-parsed link header should have matching URL, but has `%s`", parsed[0].URL)
+	}
+
+	if parsed[0].Rel != l.Rel {
+		t.Errorf("Re-parsed link header should have matching rel, but has `%s`", parsed[0].Rel)
 	}
 }
