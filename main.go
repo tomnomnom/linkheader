@@ -33,8 +33,7 @@ func (l Link) Param(key string) (string, error) {
 	return "", fmt.Errorf("Could not find param '%s'", key)
 }
 
-// String returns the string representation of a Link header
-// for use in HTTP responses
+// String returns the string representation of a link
 func (l Link) String() string {
 
 	p := make([]string, len(l.Params))
@@ -59,6 +58,16 @@ func (l Links) FilterByRel(r string) Links {
 		}
 	}
 	return links
+}
+
+// String returns the string representation of multiple Links
+// for use in HTTP responses etc
+func (l Links) String() string {
+	strs := make([]string, 0)
+	for _, link := range l {
+		strs = append(strs, link.String())
+	}
+	return strings.Join(strs, ", ")
 }
 
 // Parse parses a raw Link header in the form:

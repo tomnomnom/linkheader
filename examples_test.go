@@ -61,3 +61,16 @@ func ExampleLink_String() {
 	// Output:
 	// Link: <http://example.com/page/2>; rel="next"
 }
+
+func ExampleLinks_String() {
+
+	links := linkheader.Links{
+		{URL: "http://example.com/page/3", Rel: "next"},
+		{URL: "http://example.com/page/1", Rel: "last"},
+	}
+
+	fmt.Printf("Link: %s\n", links.String())
+
+	// Output:
+	// Link: <http://example.com/page/3>; rel="next", <http://example.com/page/1>; rel="last"
+}

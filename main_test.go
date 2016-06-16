@@ -131,3 +131,18 @@ func TestLinkToString(t *testing.T) {
 		t.Errorf("Re-parsed link header should have matching rel, but has `%s`", parsed[0].Rel)
 	}
 }
+
+func TestLinksToString(t *testing.T) {
+	ls := Links{
+		{URL: "http://example.com/page/3", Rel: "next"},
+		{URL: "http://example.com/page/1", Rel: "last"},
+	}
+
+	have := ls.String()
+
+	want := "<http://example.com/page/3>; rel=\"next\", <http://example.com/page/1>; rel=\"last\""
+
+	if have != want {
+		t.Errorf("Want `%s`, have `%s`", want, have)
+	}
+}
