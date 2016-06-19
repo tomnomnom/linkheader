@@ -51,17 +51,14 @@ func TestLinkMethods(t *testing.T) {
 		t.Errorf("Link should not have param 'foo'")
 	}
 
-	val, err := link.Param("pet")
-	if err != nil {
-		t.Errorf("Error value should be nil")
-	}
+	val := link.Param("pet")
 	if val != "cat" {
 		t.Errorf("Link should have param pet=\"cat\"")
 	}
 
-	_, err = link.Param("foo")
-	if err == nil {
-		t.Errorf("Error value should not be nil")
+	val = link.Param("foo")
+	if val != "" {
+		t.Errorf("Link should not have value for param 'foo'")
 	}
 
 }
@@ -108,14 +105,12 @@ func TestLinkToString(t *testing.T) {
 	l := Link{
 		URL: "http://example.com/page/2",
 		Rel: "next",
+		Params: map[string]string{
+			"foo": "bar",
+		},
 	}
 
 	have := l.String()
-
-	want := "<http://example.com/page/2>; rel=\"next\""
-	if have != want {
-		t.Errorf("Want `%s`; have `%s`", want, have)
-	}
 
 	parsed := Parse(have)
 
@@ -129,6 +124,10 @@ func TestLinkToString(t *testing.T) {
 
 	if parsed[0].Rel != l.Rel {
 		t.Errorf("Re-parsed link header should have matching rel, but has `%s`", parsed[0].Rel)
+	}
+
+	if parsed[0].Param("foo") != "bar" {
+		t.Errorf("Re-parsed link header should have foo=\"bar\" but doesn't")
 	}
 }
 

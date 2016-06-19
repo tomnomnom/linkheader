@@ -23,20 +23,20 @@ func (l Link) HasParam(key string) bool {
 	return false
 }
 
-// Param returns the value of a parameter, or an error on failure
-func (l Link) Param(key string) (string, error) {
+// Param returns the value of a parameter if it exists
+func (l Link) Param(key string) string {
 	for k, v := range l.Params {
 		if key == k {
-			return v, nil
+			return v
 		}
 	}
-	return "", fmt.Errorf("Could not find param '%s'", key)
+	return ""
 }
 
 // String returns the string representation of a link
 func (l Link) String() string {
 
-	p := make([]string, len(l.Params))
+	p := make([]string, 0, len(l.Params))
 	for k, v := range l.Params {
 		p = append(p, fmt.Sprintf("%s=\"%s\"", k, v))
 	}
