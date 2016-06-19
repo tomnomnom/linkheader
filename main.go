@@ -63,7 +63,7 @@ func (l Links) FilterByRel(r string) Links {
 // String returns the string representation of multiple Links
 // for use in HTTP responses etc
 func (l Links) String() string {
-	strs := make([]string, 0)
+	var strs []string
 	for _, link := range l {
 		strs = append(strs, link.String())
 	}
