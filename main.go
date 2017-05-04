@@ -114,7 +114,7 @@ func Parse(raw string) Links {
 
 		}
 
-		if link.URL != "" && link.Rel != "" {
+		if link.URL != "" {
 			links = append(links, link)
 		}
 	}
