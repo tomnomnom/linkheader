@@ -38,6 +38,13 @@ func TestSimple(t *testing.T) {
 
 }
 
+func TestEmpty(t *testing.T) {
+	links := Parse("")
+	if links != nil {
+		t.Errorf("Return value should be nil, but was %s", len(links))
+	}
+}
+
 func TestLinkMethods(t *testing.T) {
 	header := "<https://api.github.com/user/9287/repos?page=1&per_page=100>; rel=\"prev\"; pet=\"cat\""
 	links := Parse(header)
