@@ -38,6 +38,27 @@ func TestSimple(t *testing.T) {
 
 }
 
+func TestEmpty(t *testing.T) {
+	links := Parse("")
+	if links != nil {
+		t.Errorf("Return value should be nil, but was %s", len(links))
+	}
+}
+
+// Although not often seen in the wild, the grammar in RFC 5988 suggests that it's
+// valid for a link header to have nothing but a URL.
+func TestNoRel(t *testing.T) {
+	links := Parse("<http://example.com>")
+
+	if len(links) != 1 {
+		t.Fatalf("Length of links should be 1, but was %d", len(links))
+	}
+
+	if links[0].URL != "http://example.com" {
+		t.Errorf("URL should be http://example.com, but was %s", links[0].URL)
+	}
+}
+
 func TestLinkMethods(t *testing.T) {
 	header := "<https://api.github.com/user/9287/repos?page=1&per_page=100>; rel=\"prev\"; pet=\"cat\""
 	links := Parse(header)
