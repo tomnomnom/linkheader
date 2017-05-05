@@ -1,8 +1,6 @@
 package linkheader
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestSimple(t *testing.T) {
 	// Test case stolen from https://github.com/thlorenz/parse-link-header :)
@@ -24,12 +22,12 @@ func TestSimple(t *testing.T) {
 		t.Errorf("First link should have rel=\"next\"")
 	}
 
-	if len(links[0].Params) != 1 {
-		t.Errorf("First link should have exactly 1 params, but has %d", len(links[0].Params))
+	if len(links[0].Params) != 0 {
+		t.Errorf("First link should have exactly 0 params, but has %d", len(links[0].Params))
 	}
 
-	if len(links[1].Params) != 2 {
-		t.Errorf("Second link should have exactly 2 params, but has %d", len(links[1].Params))
+	if len(links[1].Params) != 1 {
+		t.Errorf("Second link should have exactly 1 params, but has %d", len(links[1].Params))
 	}
 
 	if links[1].Params["pet"] != "cat" {
@@ -63,10 +61,6 @@ func TestLinkMethods(t *testing.T) {
 	header := "<https://api.github.com/user/9287/repos?page=1&per_page=100>; rel=\"prev\"; pet=\"cat\""
 	links := Parse(header)
 	link := links[0]
-
-	if !link.HasParam("rel") {
-		t.Errorf("Link should have param 'rel'")
-	}
 
 	if link.HasParam("foo") {
 		t.Errorf("Link should not have param 'foo'")

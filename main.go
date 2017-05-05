@@ -108,10 +108,9 @@ func Parse(raw string) Links {
 			// Special case for rel
 			if strings.ToLower(key) == "rel" {
 				link.Rel = val
+			} else {
+				link.Params[key] = val
 			}
-
-			link.Params[key] = val
-
 		}
 
 		if link.URL != "" {
